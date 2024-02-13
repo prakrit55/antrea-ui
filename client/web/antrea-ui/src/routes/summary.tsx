@@ -111,6 +111,26 @@ function ComponentSummary<T>(props: {title: string, data: T[], propertyNames: Pr
     );
 }
 
+function ComponentSummaryCrd<T>(props: {title: string, data: string}) {
+    return (
+        <CdsCard title={props.title}>
+            <div cds-layout="vertical gap:md">
+                <div cds-text="section" cds-layout="p-y:sm">
+                    {props.title}
+                </div>
+                <CdsDivider cds-card-remove-margin></CdsDivider>
+                <table cds-table="">
+                    <tbody>
+                        <tr>
+                            {<td>{props.data}</td>}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </CdsCard>
+    );
+}
+
 export default function Summary() {
     const [controllerInfo, setControllerInfo] = useState<ControllerInfo>();
     const [agentInfos, setAgentInfos] = useState<AgentInfo[]>();
@@ -162,6 +182,7 @@ export default function Summary() {
                 <WaitForAPIResource ready={agentInfos !== undefined} text="Loading Agents Information">
                     <ComponentSummary title="Agents" data={agentInfos!} propertyNames={agentProperties} getProperties={agentPropertyValues} />
                 </WaitForAPIResource>
+                    <ComponentSummaryCrd title="LFX term mar-may" data="The github id is: prakrit55" />
             </div>
         </main>
     );
